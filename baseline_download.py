@@ -20,11 +20,12 @@ try:
 except:
     pass
     
+#to change directory
 sh.cd('ftpfile')
 
 #NCBI FTP link 
 
-url="https://ftp.ncbi.nih.gov/pubmed/updatefiles/"
+url="https://ftp.ncbi.nlm.nih.gov/pubmed/baseline/"
 
 #empty list to store pubmed file name from ftp web 
 list2 = []
