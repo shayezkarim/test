@@ -15,13 +15,14 @@ import os
 
 #to create directory
 
+
 try:
-    sh.mkdir('ftpfile')
+    sh.mkdir('-p','ftpfile/baseline')
 except:
     pass
     
 #to change directory
-sh.cd('ftpfile')
+sh.cd('ftpfile/baseline')
 
 #NCBI FTP link 
 
