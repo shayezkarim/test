@@ -9,16 +9,10 @@ Created on Thu Apr  9 05:49:02 2020
 import tweepy
 import csv
 import pandas as pd
-import sqlite3 
-
 
 
 
 #path of database 
-
-conn = sqlite3.connect('tweet.db')
-co = conn.cursor()
-co.execute('''CREATE TABLE IF NOT EXISTS tweet (Date text, user text ,tweet text);''')
 
 
 
@@ -48,10 +42,6 @@ query  =['drug resistance' ,'drug-resistance','drug-resistant','drug resistant',
 
 
 
-search_term = '"drug resistance" OR "drug-resistance"OR "drug-resistant"OR "drug resistant"OR "antimicrobial resistance"OR "antimicrobial-resistance"OR "antimicrobial resistant" OR "antimicrobial-resistant"OR "multi drug resistant" OR "predicted resistance pattern" OR "pan drug-resistance" OR "pan drug resistance" OR "pan drug resistant" OR "pan drug-resistant" OR "resistant bacteria" OR "resistance bacteria" -filter:retweets'
-
-
-
 for query  in query:
     tweets = tweepy.Cursor(api.search,q= query + "-filter:retweets" ,
                            lang="en",
@@ -59,11 +49,9 @@ for query  in query:
     for tweet in tweets:
         #print (tweet.created_at, tweet.text)
         csvWriter.writerow([tweet.created_at, tweet.user.screen_name,tweet.text.encode('utf-8')])
-        example =[(tweet.created_at,tweet.user.name,tweet.text.encode('utf-8'))]
-        co.executemany('INSERT INTO tweet(Date,user,tweet)  VALUES (?,?,?)',example) 
+       
 
 
-conn.commit()
+
 print("Records Saved Successfully")
-conn.close()
 
